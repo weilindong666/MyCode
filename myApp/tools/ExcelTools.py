@@ -4,8 +4,6 @@
 @Author:魏林栋（welindong）
 @Time: Y E A R 年 {YEAR}年YEAR年{MONTH}月D A Y 日 {DAY}日DAY日{HOUR}
 '''
-import xlrd
-import xlwt
 import openpyxl
 
 
@@ -57,8 +55,9 @@ class ExcelTools(object):
             recordict[sheet] = {}
             table = self.excel[sheet]
             for row in range(1, table.max_row + 1):
-                allwords.append(table.cell(row, 1).value + ',' + table.cell(row, 2).value)
-                recordict[sheet][table.cell(row, 1).value] = [row, table.cell(row, 2).value, table.cell(row, 3).value, table.cell(row, 4).value]
+                if table.cell(row, 1).value is not None:
+                    allwords.append(table.cell(row, 1).value + ',' + table.cell(row, 2).value)
+                    recordict[sheet][table.cell(row, 1).value] = [row, table.cell(row, 2).value, table.cell(row, 3).value, table.cell(row, 4).value]
         return allwords, recordict
 
 
