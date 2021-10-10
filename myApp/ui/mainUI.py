@@ -19,7 +19,9 @@ class mainUI(object):
         self.num = 0
         self.mainpath = os.getcwd()
         self.tool = ReferTools()
-        self.nowtime = time.strftime("%Y-%m-%d", time.localtime())
+        # self.nowtime = time.strftime("%Y-%m-%d", time.localtime())
+        self.time = time.localtime()
+        self.nowtime = int(str(self.time.tm_year) + str(self.time.tm_mon) + str(self.time.tm_mday) + str(self.time.tm_hour))
         self.exceltool = ExcelTools(self.mainpath, self.nowtime)
         self.recordict = {}
         self.readRecord()

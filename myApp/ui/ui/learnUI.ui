@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>626</width>
-    <height>530</height>
+    <height>489</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -24,8 +24,50 @@
   <property name="windowTitle">
    <string>学习</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:rgb(203, 219, 255)</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,2">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,2">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="close_Button">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>10</width>
+          <height>10</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0">
       <item>
@@ -52,12 +94,15 @@
          <font>
           <family>Agency FB</family>
           <pointsize>36</pointsize>
-          <weight>50</weight>
+          <weight>75</weight>
           <italic>false</italic>
-          <bold>false</bold>
+          <bold>true</bold>
           <underline>false</underline>
           <strikeout>false</strikeout>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:rgb(255, 112, 29)</string>
         </property>
         <property name="text">
          <string>PushButton</string>
@@ -86,6 +131,8 @@
          <font>
           <family>方正舒体</family>
           <pointsize>16</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
          </font>
         </property>
         <property name="text">
@@ -112,7 +159,12 @@
          <font>
           <family>方正舒体</family>
           <pointsize>16</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:rgb(13, 43, 149)</string>
         </property>
         <property name="text">
          <string>上一个</string>
@@ -134,7 +186,12 @@
          <font>
           <family>方正舒体</family>
           <pointsize>16</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:rgb(13, 43, 149)</string>
         </property>
         <property name="text">
          <string>下一个</string>

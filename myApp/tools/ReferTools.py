@@ -10,10 +10,7 @@ import time
 import random
 import hashlib
 import os
-# from playsound import playsound
-# from concurrent.futures import ThreadPoolExecutor
 import pygame
-# from pydub import AudioSegment
 
 
 
@@ -24,10 +21,7 @@ class ReferTools(object):
             'Referer': 'https://fanyi.youdao.com/?keyfrom=dict2.top',
             'Cookie': 'OUTFOX_SEARCH_USER_ID=1777436480@123.136.117.175; DICT_UGC=be3af0da19b5c5e6aa4e17bd8d90b28a|; JSESSIONID=abct6Jjis5gxL8SUBXwWx; OUTFOX_SEARCH_USER_ID_NCOO=1993779311.779159; _ntes_nnid=ef99c9d2e6a1445dcb81a846ad8d6804,1632469650618; ___rl__test__cookies=1632471359200'
         }
-        # self.song = os.getcwd() + '/temp.m4a'
         self.song = os.getcwd() + '/temp/'
-        # self.song_wav = os.getcwd() + '/temp.wav'
-        # print(self.song, '\n', self.song_wav)
 
 
     def md5(self, i):
@@ -73,11 +67,6 @@ class ReferTools(object):
                 f.close()
         except Exception:
             pass
-        # self.decodeAudio()
-        # 此过程是 playsound 和 ffmpeg 之间有bug，解码之后不能直接用playsound播放，而且并不是占用问题！
-        # with open(self.song_wav, 'rb')as f:
-        #     f.read()
-        #     f.close()
 
 
     def downLoadAndRead(self, word):
@@ -94,34 +83,8 @@ class ReferTools(object):
         time.sleep(2)
         pygame.mixer.music.stop()
 
-    # def read_2(self):
-    #     # from pydub.playback import play
-    #     AudioSegment.converter = r'C:\\Users\\user\\Desktop\\myApp\\ffmpeg-4.4-essentials_build\\bin\\ffmpeg.exe'
-    #     AudioSegment.ffprobe = r"C:\\Users\\user\\Desktop\\myApp\\ffmpeg-4.4-essentials_build\\bin\\ffprobe.exe"
-    #     temp = AudioSegment.from_file('temp.m4a', format="m4a")
-    #     # os.system(r"C:\\Users\\user\\Desktop\\myApp\\ffmpeg-4.4-essentials_build\\bin\\ffmpeg -i " + self.song
-    #     # + " " + m4a_path + str(i) + ".mp3")
-    #     # temp.export(self.song_mp3, format="mp3")
-    #     # play(temp)
-    #     print('wancheng')
-
-    # def decodeAudio(self):
-    #     cmd_command = f"ffmpeg -i C:/Users/user/Desktop/myApp/temp.m4a -acodec pcm_s16le -ac 1 -ar 16000 -y C:/Users/user/Desktop/myApp/temp.wav"
-    #     os.system(cmd_command)
-
-    # def read(self):
-    #     # with open('./tools/temp.wav', 'rb')as f:
-    #     #     f.read()
-    #     #     f.close()
-    #     playsound('temp.wav')
-
 
 if __name__ == '__main__':
     tool = ReferTools()
-    # tool.refer('hello')
     tool.downLoadAudio('ball')
     tool.read('ball')
-    # tool.downLoadAndRead('ball')
-    # print(os.getcwd(), '||', sys.argv[0], '||', sys.path[0])
-    # tool.read_2()
-    # playsound('temp.wav')

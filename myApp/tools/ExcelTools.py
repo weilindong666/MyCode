@@ -13,55 +13,51 @@ class ExcelTools(object):
         self.nowtime = time
         self.excel = openpyxl.load_workbook(self.address)
         self.sheetnames = self.excel.sheetnames
-        self.addSheet()
+        self.table = self.excel[self.sheetnames[0]]
+        # self.addSheet()
 
 
-    def writeInfo(self, sheet, word, transform, renum, wrnum):
+    def writeInfo(self, time, word, transform, renum, wrnum):
         '''
         :param sheet: 页面名称，及日期
         :param word: 单词
         :param transform: 翻译
         :param renum: 听写次数
         :param wrnum: 错误次数
-        :return:
         '''
-        table = self.excel[sheet]
-        nrows = table.max_row
-        if table.cell(1, 1).value is None:
-            self.write(table, 1, word, transform, renum, wrnum)
+        nrows = self.table.max_row
+        if self.table.cell(1, 1).value is None:
+            self.write(1, word, transform, time, renum, wrnum)
             self.excel.save(self.address)
             return
-        self.write(table, nrows + 1, word, transform, renum, wrnum)
+        self.write(nrows + 1, word, transform, time, renum, wrnum)
         self.excel.save(self.address)
 
 
-    def write(self, table, row, word, transform, renum, wrnum):
-        table.cell(row, 1).value = word
-        table.cell(row, 2).value = transform
-        table.cell(row, 3).value = renum
-        table.cell(row, 4).value = wrnum
+    def write(self, row, word, transform, time, renum, wrnum):
+        self.table.cell(row, 1).value = word
+        self.table.cell(row, 2).value = transform
+        self.table.cell(row, 3).value = time
+        self.table.cell(row, 4).value = renum
+        self.table.cell(row, 5).value = wrnum
 
 
-    def addSheet(self):
-        if self.sheetnames[-1] != self.nowtime:
-            self.excel.create_sheet(self.nowtime)
-            self.excel.save(self.address)
+    # def addSheet(self):
+    #     if self.sheetnames[-1] != self.nowtime:
+    #         self.excel.create_sheet(self.nowtime)
+    #         self.excel.save(self.address)
 
 
     def readExcel(self):
         allwords = []
         recordict = {}
-        for sheet in self.sheetnames:
-            recordict[sheet] = {}
-            table = self.excel[sheet]
-            for row in range(1, table.max_row + 1):
-                if table.cell(row, 1).value is not None:
-                    allwords.append(table.cell(row, 1).value + ',' + table.cell(row, 2).value)
-                    recordict[sheet][table.cell(row, 1).value] = [row, table.cell(row, 2).value, table.cell(row, 3).value, table.cell(row, 4).value]
+        for row in range(1, self.table.max_row + 1):
+            if self.table.cell(row, 1).value is not None:
+                allwords.append(self.table.cell(row, 1).value + ',' + self.table.cell(row, 2).value)
+                recordict[self.table.cell(row, 1).value] = [row, self.table.cell(row, 2).value, self.table.cell(row, 3).value, self.table.cell(row, 4).value, self.table.cell(row, 5).value]
         return allwords, recordict
 
 
-if __name__ == '__main__':
-    e = ExcelTools('C:/Users/user/Desktop/myApp/tools')
-    # e.writeInfo('2021-10-02', 666, 0)
-    e.readExcel()
+    def record(self, row, column, info):
+        self.table.cell(row, column).value = info
+        self.excel.save(self.address)
